@@ -13,17 +13,24 @@ tokio = { version = "1.20.0", features = ["sync"] }
 async-trait = "0.1.53"
 pyo3-log = "0.6.0"
 log = "0.4.17"
+futures = "0.3.21"
 
 [dependencies.songbird]
-version = "0.3.0"
-features = ["driver", "yt-dlp"]
+git = "https://github.com/serenity-rs/songbird"
+branch = "next"
+features = ["driver"]
+
+[dependencies.symphonia]
+features = ["aac", "mp3", "isomp4", "alac"]
+git = "https://github.com/FelixMcFelix/Symphonia"
+branch = "songbird-fixes"
 
 [dependencies.pyo3]
-version = "0.16.4"
+version = "^0.16.4"
 features = ["extension-module"]
 
 [dependencies.pyo3-asyncio]
-version = "0.16.0"
+version = "^0.16.0"
 features = ["attributes", "tokio-runtime"]
 
 [dependencies.discortp]
