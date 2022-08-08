@@ -275,22 +275,12 @@ dependencies = [
 
 [[package]]
 name = "discortp"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb66017646a48220b5ea30d63ac18bb5952f647f1a41ed755880895125d26972"
-dependencies = [
- "pnet_macros 0.28.0",
- "pnet_macros_support 0.28.0",
-]
-
-[[package]]
-name = "discortp"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "524b9439c09174aede2c88d58cfc6b83575b06569d1af4d07562f76595b2896b"
 dependencies = [
- "pnet_macros 0.31.0",
- "pnet_macros_support 0.31.0",
+ "pnet_macros",
+ "pnet_macros_support",
 ]
 
 [[package]]
@@ -929,29 +919,11 @@ checksum = "58893f751c9b0412871a09abd62ecd2a00298c6c83befa223ef98c52aef40cbe"
 
 [[package]]
 name = "pnet_base"
-version = "0.28.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "25488cd551a753dcaaa6fffc9f69a7610a412dd8954425bf7ffad5f7d1156fb8"
-
-[[package]]
-name = "pnet_base"
 version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f9d3a993d49e5fd5d4d854d6999d4addca1f72d86c65adf224a36757161c02b6"
 dependencies = [
  "no-std-net",
-]
-
-[[package]]
-name = "pnet_macros"
-version = "0.28.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30490e0852e58402b8fae0d39897b08a24f493023a4d6cf56b2e30f31ed57548"
-dependencies = [
- "proc-macro2",
- "quote",
- "regex",
- "syn",
 ]
 
 [[package]]
@@ -968,20 +940,11 @@ dependencies = [
 
 [[package]]
 name = "pnet_macros_support"
-version = "0.28.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d4714e10f30cab023005adce048f2d30dd4ac4f093662abf2220855655ef8f90"
-dependencies = [
- "pnet_base 0.28.0",
-]
-
-[[package]]
-name = "pnet_macros_support"
 version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "89de095dc7739349559913aed1ef6a11e73ceade4897dadc77c5e09de6740750"
 dependencies = [
- "pnet_base 0.31.0",
+ "pnet_base",
 ]
 
 [[package]]
@@ -1551,7 +1514,7 @@ dependencies = [
  "byteorder",
  "dashmap",
  "derivative",
- "discortp 0.5.0",
+ "discortp",
  "flume",
  "futures",
  "lazy_static",
@@ -1586,7 +1549,7 @@ name = "songbird-py"
 version = "0.1.0"
 dependencies = [
  "async-trait",
- "discortp 0.4.0",
+ "discortp",
  "futures",
  "log",
  "pyo3",

@@ -99,10 +99,10 @@ fn event_to_py(py: Python, event: &EventContext) -> PyResult<PyObject> {
                 None => None,
             },
             channel_id: match disconnect.channel_id {
-                Some(id) => Some(id.0),
+                Some(id) => Some(id.0.into()),
                 None => None,
             },
-            guild_id: disconnect.guild_id.0,
+            guild_id: disconnect.guild_id.0.into(),
             session_id: disconnect.session_id.to_string(),
         }
         .into_py(py)),
@@ -666,10 +666,10 @@ impl PyConnectData {
     fn from(connect: &ConnectData) -> Self {
         Self {
             channel_id: match connect.channel_id {
-                Some(id) => Some(id.0),
+                Some(id) => Some(id.0.into()),
                 None => None,
             },
-            guild_id: connect.guild_id.0,
+            guild_id: connect.guild_id.0.into(),
             session_id: connect.session_id.to_string(),
             server: connect.server.to_string(),
             ssrc: connect.ssrc,

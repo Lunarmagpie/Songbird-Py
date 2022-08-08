@@ -24,7 +24,6 @@ fn songbird(py: Python, m: &PyModule) -> PyResult<()> {
 
     m.add_class::<driver::PyDriver>()?;
     m.add_class::<source::PySource>()?;
-    m.add_class::<seekable::PyRestartableSource>()?;
     m.add_class::<seekable::PyCompressedSource>()?;
 
     // Config

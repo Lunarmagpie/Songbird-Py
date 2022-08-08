@@ -74,30 +74,11 @@ impl PySource {
     #[staticmethod]
     fn ytdl<'p>(py: Python, url: String) -> PyResult<&PyAny> {
         pyo3_asyncio::tokio::future_into_py(py, async move {
-            match songbird::ytdl(url).await {
+            match songbird::input(url).await {
                 Ok(res) => Ok(Self::from(res)),
                 Err(err) => Err(YtdlError::new_err(format!("{:?}", err))),
             }
         })
-    }
-
-    /// Create a source from bytes.
-    #[staticmethod]
-    fn bytes<'p>(bytes: Vec<u8>, stereo: bool) -> PyResult<Self> {
-        Ok(Self::from(Input::float_pcm(
-            stereo,
-            Reader::from_memory(bytes.to_vec()),
-        )))
-    }
-
-    /// This plays the bytes from the file, DO NOT use for mp3s, etc
-    /// ffmpeg should be used instead.
-    #[staticmethod]
-    fn file<'p>(filepath: String, stereo: bool) -> PyResult<Self> {
-        match File::open(filepath) {
-            Ok(res) => Ok(Self::from(Input::float_pcm(stereo, Reader::from_file(res)))),
-            Err(err) => Err(CouldNotOpenFileError::new_err(format!("{:?}", err))),
-        }
     }
 
     /// Function used to play most audio formats
