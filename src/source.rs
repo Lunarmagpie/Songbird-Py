@@ -1,13 +1,12 @@
-use std::fs::File;
 use std::sync::Arc;
 
 use tokio::sync::Mutex;
 
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyString};
-use songbird::input::{Input, Reader};
+use songbird::input::Input;
 
-use crate::exceptions::{ConsumedSourceError, CouldNotOpenFileError, FfmpegError, YtdlError};
+use crate::exceptions::{ConsumedSourceError, FfmpegError, YtdlError};
 use crate::track_handle::PyMetadata;
 
 mod builtins {
