@@ -33,11 +33,8 @@ build-verbosity = "1"
 
 [tool.cibuildwheel.linux]
 archs = ["auto", "aarch64"]
-before-build = """
-curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && 
-source "$HOME/.cargo/env" &&
-yum install -y opus
-"""
+before-build = "yum install -y opus"
 
 [tool.cibuildwheel.macos]
 archs = ["auto", "arm64"]
+before-build = "rustup target add aarch64-apple-darwin"
