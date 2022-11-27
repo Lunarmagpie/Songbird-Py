@@ -42,4 +42,4 @@ yum install -y opus
 archs = ["auto", "arm64"]
 
 [tool.cibuildwheel.windows]
-archs = ["auto", "arm64"]
+archs = ["auto", "amd64"]
