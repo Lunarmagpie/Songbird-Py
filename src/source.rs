@@ -74,7 +74,7 @@ impl PySource {
     #[staticmethod]
     fn ytdl<'p>(py: Python, url: String) -> PyResult<&PyAny> {
         pyo3_asyncio::tokio::future_into_py(py, async move {
-            match songbird::input(url).await {
+            match songbird::ytdl(url).await {
                 Ok(res) => Ok(Self::from(res)),
                 Err(err) => Err(YtdlError::new_err(format!("{:?}", err))),
             }

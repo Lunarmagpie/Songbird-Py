@@ -109,12 +109,12 @@ impl PyDriver {
                 .lock()
                 .await
                 .connect(songbird::ConnectionInfo {
-                    channel_id: Some(ChannelId::from(NonZeroU64::new(channel_id).unwrap())),
+                    channel_id: Some(ChannelId::from(channel_id)),
                     endpoint: endpoint,
-                    guild_id: GuildId::from(NonZeroU64::new(guild_id).unwrap()),
+                    guild_id: GuildId::from(guild_id),
                     session_id: session_id,
                     token: token,
-                    user_id: UserId::from(NonZeroU64::new(user_id).unwrap()),
+                    user_id: UserId::from(user_id),
                 })
                 .await;
 
@@ -175,7 +175,7 @@ impl PyDriver {
     /// ------
     /// ConsumedSourceError
     ///     Source was already played or used to create a track object.
-    fn play_input<'p>(&'p self, py: Python<'p>, source: &'p mut PySource) -> PyResult<&'p PyAny> {
+    fn play_source<'p>(&'p self, py: Python<'p>, source: &mut PySource) -> PyResult<&'p PyAny> {
         source.raise_if_consumed()?;
 
         let driver = self.driver.clone();
@@ -185,7 +185,7 @@ impl PyDriver {
             let mut source = source.lock().await;
             let old = mem::take(&mut *source);
 
-            let track_handle = driver.lock().await.play_input(old.unwrap());
+            let track_handle = driver.lock().await.play_source(old.unwrap());
             Ok(PyTrackHandle::from(track_handle))
         })
     }
@@ -196,10 +196,10 @@ impl PyDriver {
     /// ------
     /// ConsumedSourceError
     ///     Source was already played or used to create a track object.
-    fn play_only_input<'p>(
+    fn play_only_source<'p>(
         &'p self,
         py: Python<'p>,
-        source: &'p mut PySource,
+        source: &mut PySource,
     ) -> PyResult<&'p PyAny> {
         source.raise_if_consumed()?;
 
@@ -210,13 +210,13 @@ impl PyDriver {
             let mut source = source.lock().await;
             let old = mem::take(&mut *source);
 
-            let track_handle = driver.lock().await.play_only_input(old.unwrap());
+            let track_handle = driver.lock().await.play_only_source(old.unwrap());
             Ok(PyTrackHandle::from(track_handle))
         })
     }
 
     /// Plays a Track object. This makes the Track object unuseable.
-    fn play<'p>(&'p self, py: Python<'p>, track: &'p PyTrack) -> PyResult<&'p PyAny> {
+    fn play<'p>(&'p self, py: Python<'p>, track: &PyTrack) -> PyResult<&'p PyAny> {
         let driver = self.driver.clone();
         let handle = PyTrackHandle::from(track.handle.clone());
         let track = track.track.clone();
@@ -230,7 +230,7 @@ impl PyDriver {
     }
 
     /// Same as `play` but stops all other sources from playing.
-    fn play_only<'p>(&'p self, py: Python<'p>, track: &'p PyTrack) -> PyResult<&'p PyAny> {
+    fn play_only<'p>(&'p self, py: Python<'p>, track: &PyTrack) -> PyResult<&'p PyAny> {
         let driver = self.driver.clone();
         let handle = PyTrackHandle::from(track.handle.clone());
         let track = track.track.clone();

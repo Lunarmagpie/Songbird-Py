@@ -15,7 +15,7 @@ use crate::track_handle::{
 /// can be used to control it after it starts playing.
 #[pyfunction]
 #[pyo3(name = "create_player")]
-pub fn py_create_player<'p>(py: Python<'p>, source: &'p mut PySource) -> PyResult<&'p PyAny> {
+pub fn py_create_player<'p>(py: Python<'p>, source: &mut PySource) -> PyResult<&'p PyAny> {
     source.raise_if_consumed()?;
 
     let source = source.source.clone();
