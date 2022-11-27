@@ -1,7 +1,6 @@
 use std::time::Duration;
 
 use async_trait::async_trait;
-use log::warn;
 use pyo3::basic::CompareOp;
 use pyo3::exceptions::{PyNotImplementedError, PyTypeError};
 use pyo3::prelude::*;
