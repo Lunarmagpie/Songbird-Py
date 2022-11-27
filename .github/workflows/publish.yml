@@ -44,7 +44,7 @@ jobs:
           echo $PATH
           echo $GITHUB_PATH
 
-          PATH=$PATH:$HOME/.cargo/
+          GITHUB_PATH=$GITHUB_PATH:$HOME/.cargo/
 
       - name: wheels ${{ matrix.os }} ${{ matrix.vers }}
         uses: joerick/cibuildwheel@v2.11.2
