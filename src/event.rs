@@ -12,7 +12,7 @@ use songbird::{CoreEvent, Event, EventContext, EventHandler, TrackEvent};
 use crate::track_handle::{PyTrackHandle, PyTrackState};
 use crate::utils::unwrap_f64_to_duration;
 
-use discortp::rtp::{Rtp, RtpType};
+use songbird::packet::rtp::{Rtp, RtpType};
 
 #[derive(Clone)]
 pub struct EventHanlder {

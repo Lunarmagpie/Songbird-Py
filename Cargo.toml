@@ -23,7 +23,3 @@ features = ["extension-module"]
 [dependencies.pyo3-asyncio]
 version = "^0.17.0"
 features = ["attributes", "tokio-runtime"]
-
-[dependencies.discortp]
-features = ["discord-full"]
-version = "0.4.0"
