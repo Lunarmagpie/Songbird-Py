@@ -35,7 +35,7 @@ jobs:
           platforms: all
 
       - name: wheels ${{ matrix.os }} ${{ matrix.vers }}
-        uses: joerick/cibuildwheel@v2.2.2
+        uses: joerick/cibuildwheel@v2.11.2
         env:
           CIBW_BUILD: "cp${{ matrix.python-version}}-*"
 
