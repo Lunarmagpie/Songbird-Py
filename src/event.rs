@@ -197,11 +197,6 @@ impl PyEvent {
         Self::from(Event::Core(CoreEvent::RtcpPacket))
     }
     #[classattr]
-    /// Fires whenever a user connects to the same stream as the bot.
-    fn ClientConnect() -> () {
-        warn!("Event.ClientConnect is deprecated. Please use the VoiceStateUpdate gateway event to detect when a user joins a voice channel.")
-    }
-    #[classattr]
     /// Fires whenever a user disconnects from the same stream as the bot.
     fn ClientDisconnect() -> Self {
         Self::from(Event::Core(CoreEvent::ClientDisconnect))
