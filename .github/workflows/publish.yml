@@ -31,7 +31,7 @@ jobs:
         with:
           platforms: all
 
-      - name: Install latest stable
+      - name: Install rust stable
         if: runner.os == 'Linux'
         uses: actions-rs/toolchain@v1
         with:
