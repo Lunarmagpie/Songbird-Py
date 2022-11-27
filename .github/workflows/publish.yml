@@ -39,6 +39,8 @@ jobs:
             toolchain: stable
             override: true
 
+      - run: cargo --version
+
       - name: wheels ${{ matrix.os }} ${{ matrix.vers }}
         uses: joerick/cibuildwheel@v2.11.2
         env:
