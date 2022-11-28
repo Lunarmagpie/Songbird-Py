@@ -39,6 +39,7 @@ source "$HOME/.cargo/env" &&
 rustup show &&
 yum install -y opus
 """
+environment = 'PATH="$HOME/.cargo/bin:$PATH"'
 
 [tool.cibuildwheel.macos]
 archs = ["auto", "arm64"]
