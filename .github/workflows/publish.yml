@@ -31,13 +31,9 @@ jobs:
         with:
           platforms: all
 
-      - name: Install rust stable
-        if: runner.os != 'Linux'
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
+      - name: Get latest CMake and Ninja
+        if: runner.os == "Windows"
+        uses: lukka/get-cmake@latest
 
       - name: set up python
         uses: actions/setup-python@v4
