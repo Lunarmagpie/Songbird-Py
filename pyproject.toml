@@ -33,7 +33,11 @@ build-verbosity = "1"
 
 [tool.cibuildwheel.linux]
 archs = ["auto", "aarch64"]
-before-build = "yum install -y opus"
+before-build = """
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable --profile=minimal -y &&
+rustup show &&
+yum install -y opus
+"""
 
 [tool.cibuildwheel.macos]
 archs = ["auto", "arm64"]

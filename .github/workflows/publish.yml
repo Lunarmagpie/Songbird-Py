@@ -32,15 +32,12 @@ jobs:
           platforms: all
 
       - name: Install rust stable
-        if: runner.os == 'Linux'
+        if: runner.os != 'Linux'
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
           override: true
-
-      - run: |
-          rustup show
 
       - name: set up python
         uses: actions/setup-python@v4
