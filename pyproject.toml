@@ -35,12 +35,15 @@ build-verbosity = "1"
 archs = ["auto", "aarch64"]
 before-build = """
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable --profile=minimal -y &&
-source "$HOME/.cargo/env" &&
 rustup show &&
-yum install -y opus
+yum install -y opus &&
+yum install cmake
 """
 environment = 'PATH="$HOME/.cargo/bin:$PATH"'
 
 [tool.cibuildwheel.macos]
 archs = ["auto", "arm64"]
 before-build = "rustup target add aarch64-apple-darwin"
+
+[tool.cibuildwheel.windows]
+environment = 'set PATH=%PATH%'
