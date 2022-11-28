@@ -35,19 +35,22 @@ jobs:
         if: runner.os == 'Linux'
         uses: actions-rs/toolchain@v1
         with:
-            profile: minimal
-            toolchain: stable
-            override: true
+          profile: minimal
+          toolchain: stable
+          override: true
 
       - run: |
-          cargo --version
-          echo $PATH
-          echo $GITHUB_PATH
+          rustup show
 
-          GITHUB_PATH=$GITHUB_PATH:$HOME/.cargo/
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
       - name: wheels ${{ matrix.os }} ${{ matrix.vers }}
-        uses: joerick/cibuildwheel@v2.11.2
+        run: |
+          pip install cibuildwheel
+          cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: "cp${{ matrix.python-version}}-*"
 
