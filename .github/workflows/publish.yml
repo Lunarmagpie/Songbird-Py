@@ -32,7 +32,7 @@ jobs:
           platforms: all
 
       - name: Get latest CMake and Ninja
-        if: runner.os == "Windows"
+        if: runner.os == 'Windows'
         uses: lukka/get-cmake@latest
 
       - name: set up python
