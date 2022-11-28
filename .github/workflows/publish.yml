@@ -46,6 +46,7 @@ jobs:
           cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: "cp${{ matrix.python-version}}-*"
+          CIBW_BEFORE_ALL_LINUX: "curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y"
 
       - uses: actions/upload-artifact@v2
         with:
