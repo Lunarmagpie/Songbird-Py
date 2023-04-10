@@ -15,10 +15,8 @@ pyo3-log = "0.6.0"
 log = "0.4.17"
 
 [dependencies.songbird]
-version = "0.3.0"
+version = "0.3.2"
 features = ["driver", "yt-dlp", "builtin-queue"]
-git = "https://github.com/Erk-/songbird/"
-branch = "do-not-fail-if-new-opcode"
 
 [dependencies.pyo3]
 version = "0.16.4"
